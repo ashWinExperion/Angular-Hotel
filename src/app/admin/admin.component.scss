@@ -1,0 +1,27 @@
+a {
+  font-size: large;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+}
+
+
+
+i {
+  color: black;
+  font-weight: bolder;
+}
+
+.col-2 div {
+  border-radius: 0,20%,0,20%;
+  background-color: #ffffff17;
+  height: 10%;
+  margin-top: 6%;
+  transition-duration:1s;
+  transition-property: background-color;
+}
+
+.col-2 div:hover {
+  background-color: rgb(95, 95, 95);
+  color: white;
+}

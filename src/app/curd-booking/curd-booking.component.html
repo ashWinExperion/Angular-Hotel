@@ -1,0 +1,114 @@
+
+
+<div class="container">
+    <h5 style="margin-top: 50px;">Make New Booking... !!!</h5>
+    <div class="card mt-1">
+        <div class="card-body">
+         
+            <!--template driven form-->
+            <form name="empform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+            
+                <!--Employee ID --hidden-->
+                <input type="hidden" name="BookId" [(ngModel)]="hotelService.formData.BookId">
+            
+            
+            
+            
+                <!--Customer Name-->
+                <div class="form-group">
+                    <label>Customer Name: </label>
+                    <select required style="color: black;" name="CustId" id="CustId" #CustId="ngModel" class="form-control"
+                        [(ngModel)]="hotelService.formData.CustId">
+                        <option value=0 disabled>Select Customer</option>
+                        <option *ngFor="let cust of hotelService.customerList" value="{{cust.CustId}}">{{cust.Name}}
+                        </option>
+                    </select>
+            
+                    
+                    <!--validation-->
+                    <div class="validation-error" *ngIf="CustId.touched && CustId.value==0">
+                        <small >
+                            Select A Customer
+                        </small>
+                    </div>
+                </div>
+            
+            
+                <!--Room No dropdwn-->
+                <div class="form-group">
+                    <label>Room No: </label>
+                    <select required style="color: black;" name="RoomNo" id="RoomNo" #RoomNo="ngModel" class="form-control"
+                        [(ngModel)]="hotelService.formData.RoomNo">
+                        <option value=0 disabled>Select Department</option>
+                        <option *ngFor="let room of hotelService.roomLis" value="{{room.RoomId}}">{{room.RoomId + " - "+
+                            room.CatName}}
+                        </option>
+                    </select>
+            
+                    <!--validation-->
+                    <div class="validation-error" *ngIf="RoomNo.touched && RoomNo.value==0">
+                        <small>
+                            RoomNo is required
+                        </small>
+                    </div>
+                </div>
+            
+            
+            
+                <!--date of Booking-->
+                <div class="form-group">
+                    <label>Booking Date: </label>
+                    <input type="date" name="DateOfBook" #DateOfBook="ngModel" [(ngModel)]="hotelService.formData.DateOfBook"
+                        class="form-control" required [ngClass]="{'is-invalid': DateOfBook.touched && DateOfBook.invalid}">
+            
+                    <!--validation-->
+                    <div class="validation-error" *ngIf="DateOfBook.touched && DateOfBook.value==null ">
+                        <small>
+                            Booking Date
+                        </small>
+                    </div>
+                </div>
+            
+            
+            
+                <!--No. Of Days-->
+                <div class="form-group">
+                    <label>No Of Days: </label>
+                    <input type="number" required name="NoOfDays" required #NoOfDays="ngModel" [(ngModel)]="hotelService.formData.NoOfDays"
+                        class="form-control" placeholder="Enter NoOfDays" required minlength="2"
+                        [ngClass]="{'is-invalid': NoOfDays.touched && NoOfDays.value==0}">
+            
+                    <!--validation-->
+                    <div class="validation-error" *ngIf="NoOfDays.touched && NoOfDays.value==0">
+                        <small>
+                            NoOfDays Amount Required
+                        </small>
+                    </div>
+                </div>
+            
+            
+                <!--Advance-->
+                <div class="form-group">
+                    <label>Advance Amount: </label>
+                    <input type="text" name="Advance" #Advance="ngModel" [(ngModel)]="hotelService.formData.Advance"
+                        class="form-control" placeholder="Enter Advance" required minlength="2"
+                        [ngClass]="{'is-invalid': Advance.touched && Advance.invalid}">
+            
+                    <!--validation-->
+                    <div class="validation-error" *ngIf="Advance.touched && Advance.value==0">
+                        <small>
+                            Advance Amount Required
+                        </small>
+                    </div>
+                </div>
+            
+            
+            
+                <div class="form-group mt-3">
+                    <button type="submit" [disabled]="!(form.valid && form.dirty)"
+                        class="btn btn-lg btn-dark form-control">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

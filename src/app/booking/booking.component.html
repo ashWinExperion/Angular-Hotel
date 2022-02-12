@@ -1,0 +1,25 @@
+
+<div class="container">
+    <h5 style="margin-top: 50px;">Booking Details... !!!</h5>
+    <div class="card mt-1" >
+        <input type="text" class="form-control"  placeholder="Enter Keyword for filter result" [(ngModel)]="filter">
+        <div  *ngFor="let item of listBooking| filter:filter | paginate: { itemsPerPage: 5, currentPage: page }" class="alert alert-secondary" role="alert">
+    
+            <div class="row">
+                <div class="col-10">
+                    <div class="tableRow" >Room No : {{item.RoomNo +" "+ item.CatType }} </div> 
+                </div>
+                <div class="col-2">
+                    <a href=""> <i class="bi bi-eye-fill"></i></a>
+                    <a (click)="editBooking(item.BookId)"><i class="bi bi-pencil-square text-success"></i></a>
+                    <a (click)="deleteBooking(item.BookId)"><i class="bi bi-trash-fill text-danger"></i></a>
+                
+                </div>
+            </div>
+          </div>
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
+
+
+
